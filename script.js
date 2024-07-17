@@ -1,3 +1,11 @@
+function toggleTheme() {
+    if (document.documentElement.getAttribute('data-theme') === 'dark') {
+        document.documentElement.removeAttribute('data-theme');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    }
+}
+
 function toggleNavbar() {
     var navbar = document.getElementById("navbar");
     navbar.classList.toggle("expanded");
