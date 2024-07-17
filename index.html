@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Navbar Expansível</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="navbar" id="navbar">
+            <div class="navbar-header" onclick="toggleNavbar()">
+                <div class="icons">
+                    <span class="user-div"><img src="src/images/balta-io.jpeg" alt="User Image"
+                            class="user-image" /></span>
+                    <span class="fas fa-search" onclick="showSearch()"></span>
+                    <span class="fas fa-map" onclick="hiddenMenu()"></span>
+                    <span class="fas fa-plus" onclick="showMap()"></span>
+                    <button onclick="toggleTheme()">toogle
+                        theme</button>
+                </div>
+            </div>
+        </div>
+        <div class="main-content" id="mainContent">
+            <div class="default-content">
+                <h1>Bem-vindo</h1>
+                <p>Conteúdo principal da página.</p>
+            </div>
+            <div class="search-content hidden">
+                <h1>Pesquisar</h1>
+                <form>
+                    <input type="text" placeholder="Digite sua pesquisa">
+                    <button type="submit">Pesquisar</button>
+                </form>
+            </div>
+            <div class="plus-content hidden">
+                <h1>Adicionar Evento</h1>
+                <form>
+                    <input type="text" placeholder="Local do evento">
+                    <button type="submit">Adicionar</button>
+                </form>
+            </div>
+            <div class="map-content">
+                <img src="https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2024/02/google-maps-e1707316052388.png?w=1220&h=674&crop=1&quality=50"
+                    alt="Mapa">
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
