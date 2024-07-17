@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,15 +8,19 @@
     <link rel="stylesheet" href="style.css">
     <title>Navbar Expansível</title>
 </head>
+
 <body>
     <div class="container">
         <div class="navbar" id="navbar">
             <div class="navbar-header" onclick="toggleNavbar()">
                 <div class="icons">
-                    <span class="fas fa-bars"></span>
+                    <span class="user-div"><img src="src/images/balta-io.jpeg" alt="User Image"
+                            class="user-image" /></span>
                     <span class="fas fa-search" onclick="showSearch()"></span>
-                    <span class="fas fa-plus" onclick="showMap()"></span>
                     <span class="fas fa-map" onclick="hiddenMenu()"></span>
+                    <span class="fas fa-plus" onclick="showMap()"></span>
+                    <button onclick="toggleTheme()">toogle
+                        theme</button>
                 </div>
             </div>
         </div>
@@ -39,10 +44,12 @@
                 </form>
             </div>
             <div class="map-content">
-                <img src="https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2024/02/google-maps-e1707316052388.png?w=1220&h=674&crop=1&quality=50" alt="Mapa">
+                <img src="https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2024/02/google-maps-e1707316052388.png?w=1220&h=674&crop=1&quality=50"
+                    alt="Mapa">
             </div>
         </div>
     </div>
     <script src="script.js"></script>
 </body>
+
 </html>
