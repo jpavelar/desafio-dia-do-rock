@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+body {
+    background-color: #f3f5f9;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.navbar {
+    background: #EAEBE4;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50px; /* Mantém a largura da navbar */
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+
+.navbar-header {
+    cursor: pointer;
+}
+
+.icons {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.icons span {
+    cursor: pointer;
+    line-height: 4;
+    font-size: xx-large; /* Tamanho do ícone ajustado */
+}
+
+.main-content {
+    flex: 1;
+    margin-left: 50px; /* Espaço da navbar */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Para alinhar os conteúdos à esquerda */
+    overflow: hidden;
+}
+
+.default-content,
+.search-content,
+.plus-content {
+    background-color: bisque;
+    height: 100%;
+    width: 300px; /* Largura fixa dos formulários */
+}
+
+.hidden {
+    display: none;
+}
+
+#mainContent .search-content,
+#mainContent .plus-content {
+    display: none;
+}
+
+.map-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.map-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
