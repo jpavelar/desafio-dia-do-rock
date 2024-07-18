@@ -29,7 +29,6 @@
     list-style: none;
     text-decoration: none;
     font-family: 'Josefin Sans', sans-serif;
-    z-index: 2;
 }
 
 body {
@@ -51,6 +50,7 @@ body {
     top: 0;
     left: 0;
     height: 100%;
+    z-index: 3;
 }
 
 .navbar-header {
@@ -62,7 +62,6 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    z-index: 2;
 }
 
 .icons span {
@@ -71,12 +70,11 @@ body {
     font-size: xx-large;
     /* Tamanho do ícone ajustado */
     color: var(--primary);
-    z-index: 2;
 }
 
 .main-content {
     flex: 1;
-    margin-left: 50px;
+    margin-left: 45px;
     /* Espaço da navbar */
     padding: 20px;
     display: flex;
@@ -84,6 +82,8 @@ body {
     justify-content: flex-start;
     /* Para alinhar os conteúdos à esquerda */
     overflow: hidden;
+    position: relative;
+    z-index: 2;
 }
 
 .default-content,
@@ -93,6 +93,8 @@ body {
     height: 100%;
     width: 300px;
     /* Largura fixa dos formulários */
+    position: relative;
+    z-index: 2; 
 }
 
 .hidden {
@@ -123,4 +125,8 @@ body {
     width: 32px;
     height: 32px;
     border-radius: 300px;
+}
+
+#map {
+    position: static !important;
 }
