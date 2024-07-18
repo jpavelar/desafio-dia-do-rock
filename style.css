@@ -29,7 +29,7 @@
     list-style: none;
     text-decoration: none;
     font-family: 'Josefin Sans', sans-serif;
-    z-index: 1;
+    z-index: 2;
 }
 
 body {
@@ -62,6 +62,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    z-index: 2;
 }
 
 .icons span {
@@ -70,7 +71,7 @@ body {
     font-size: xx-large;
     /* Tamanho do ícone ajustado */
     color: var(--primary);
-    ;
+    z-index: 2;
 }
 
 .main-content {
@@ -85,6 +86,8 @@ body {
     overflow: hidden;
 }
 
+.default-content,
+.search-content,
 .plus-content {
     background-color: bisque;
     height: 100%;
@@ -102,23 +105,18 @@ body {
 }
 
 .map-content {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.map-content img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
     position: fixed;
-    z-index: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 64px;
+    z-index: 1;
 }
 
-.map-content-iframe {
+.map-content iframe {
     width: 100vw;
     height: 100vh;
+    border: none;
 }
 
 .user-image {
