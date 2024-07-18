@@ -113,7 +113,7 @@ body {
     z-index: 1;
 }
 
-.map-content iframe {
+.map-content div {
     width: 100vw;
     height: 100vh;
     border: none;
