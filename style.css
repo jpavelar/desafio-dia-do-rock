@@ -29,6 +29,7 @@
     list-style: none;
     text-decoration: none;
     font-family: 'Josefin Sans', sans-serif;
+    z-index: 1;
 }
 
 body {
@@ -84,8 +85,6 @@ body {
     overflow: hidden;
 }
 
-.default-content,
-.search-content,
 .plus-content {
     background-color: bisque;
     height: 100%;
@@ -113,6 +112,13 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    position: fixed;
+    z-index: 0;
+}
+
+.map-content-iframe {
+    width: 100vw;
+    height: 100vh;
 }
 
 .user-image {
