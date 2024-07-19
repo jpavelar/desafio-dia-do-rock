@@ -1,5 +1,8 @@
-let map = 0;
-let geocoder = 0;
+let map;
+let geocoder;
+let markers = [];
+let autocomplete;
+
 
 
 const lightStyle = [];
@@ -85,8 +88,9 @@ const darkStyle = [
 ];
 
 window.initializeMap = function () {
-  loadMap(-23.4742494, -46.7027369, 10)
+  loadMap(-23.4742494, -46.7027369, 10);
 };
+
 
 window.loadGoogleMaps = function () {
   if (typeof google === 'object' && typeof google.maps === 'object') {
@@ -109,6 +113,7 @@ function loadMap(lat, lng, zoom) {
     styles: lightStyle
   };
   map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
 }
 
 // Geolocalização
@@ -135,6 +140,37 @@ function geocodeAddress(address) {
   });
 }
 
+// Adiciona um ponteiro no mapa
+function addMarker(lat, lng) {
+  const marker = new google.maps.Marker({
+    position: { lat: lat, lng: lng },
+    map: map
+  });
+  markers.push(marker);
+}
+
+// Remove todos os ponteiros do mapa
+function clearMarkers() {
+  for (let i = 0; i < markers.length; i++) {
+    markers[i].setMap(null);
+  }
+  markers = [];
+}
+
+// Geocodificação e adição de ponteiro com a entrada de endereço
+function geocodeAndAddMarker(address) {
+  clearMarkers()
+  const geocoder = new google.maps.Geocoder();
+  geocoder.geocode({ 'address': address }, function (results, status) {
+    if (status === 'OK' && results[0]) {
+      const lat = results[0].geometry.location.lat();
+      const lng = results[0].geometry.location.lng();
+      map.setCenter(new google.maps.LatLng(lat, lng));
+      addMarker(lat, lng);
+    }
+  });
+}
+
 window.onload = function () {
   initializeMap();
   loadGoogleMaps();
@@ -148,3 +184,4 @@ function applyThemeMap(theme) {
 function toggleThemeMap() {
   map.setOptions({ styles: document.documentElement.getAttribute('data-theme') === 'dark' ? darkStyle : lightStyle });
 }
+

@@ -66,6 +66,21 @@ const event_database = {};
             `;
     }
 
+    function formatEventDate(eventDate) {
+        const today = new Date().toISOString().split('T')[0]; // Obtém a data de hoje no formato YYYY-MM-DD
+        const eventDateObj = new Date(eventDate);
+        const eventDateString = eventDateObj.toISOString().split('T')[0]; // Obtém a data do evento no formato YYYY-MM-DD
+
+        if (today === eventDateString) {
+            // Se a data do evento é hoje, mostra a hora
+            return eventDateObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        } else {
+            // Caso contrário, mostra o dia e o mês abreviado
+            return eventDateObj.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' }).replace('.', '').replace('de', '/').replace(' ', '');
+        }
+    }
+
+
     function displayResults(results) {
         const resultsContainer = document.getElementById('results');
         resultsContainer.innerHTML = ''; // Limpa resultados anteriores
@@ -76,7 +91,7 @@ const event_database = {};
             const eventDiv = document.createElement('div');
             eventDiv.classList.add('result', 'flex', 'flex-row', 'items-center', 'space-x-8', 'h-20');
             eventDiv.innerHTML = `
-                    <div class="result flex flex-row items-center space-x-8 h-20 mb-2 hover-bg-black-100" onclick="geocodeAddress('${event.eventAdress}')" >
+                    <div class="result flex flex-row items-center space-x-8 h-20 mb-2 hover-bg-black-100" onclick="geocodeAndAddMarker('${event.eventAdress}')" >
                         <div class="ml-5">
                             <img class="min-w-10" src="src/images/Avatar.png" alt="band logo">
                         </div>
@@ -89,13 +104,15 @@ const event_database = {};
                             </h4>
                         </div>
                         <div class="flex items-center justify-center h-16 w-16">
-                            <h2 class="text-center text-xl mr-4 c-white">${new Date(event.eventDate).toLocaleString()}</h2>
+                            <h2 class="text-center text-xl mr-4 c-white">${formatEventDate(event.eventDate)}</h2>
                         </div>
                     </div>
             `;
             resultsContainer.appendChild(eventDiv);
         });
     }
+
+
 
     function clearForm() {
         document.getElementById('eventForm').reset();
