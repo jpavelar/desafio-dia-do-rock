@@ -39,7 +39,7 @@ const event_database = {};
                     results.push(data);
                 }
             });
-            if (results.length <= 0) {
+            if (results.length == 0) {
                 displayNoResults()
             }
             // Exibe os resultados na tela
@@ -55,9 +55,7 @@ const event_database = {};
 
         const resultsContainer = document.getElementById('results');
         resultsContainer.innerHTML = '';
-        const eventDiv = document.createElement('div');
-        eventDiv.classList.add('result', 'flex', 'flex-row', 'items-center', 'space-x-8', 'h-20');
-        eventDiv.innerHTML = `
+        resultsContainer.innerHTML = `
                     <div class="result flex flex-row items-center space-x-8 h-20 mb-2 hover-bg-black-100" >
                         <div class="flex flex-col">
                             <h4 class="max-w-7 text-xs c-white">
@@ -66,8 +64,6 @@ const event_database = {};
                         </div>
                     </div>
             `;
-        console.log(resultsContainer.innerHTML)
-        resultsContainer.appendChild(eventDiv);
     }
 
     function displayResults(results) {
@@ -114,9 +110,8 @@ const event_database = {};
         const eventAdress = document.getElementById('eventAdress').value;
 
         try {
-
             showLoadingBar()
-            const docRef = await dba.collection('events').add({
+            await db.collection('events').add({
                 eventBand: eventBand,
                 eventBandLower: eventBand.toLowerCase(),
                 eventDate: eventDate,
@@ -126,13 +121,17 @@ const event_database = {};
                 hideLoadingBar()
                 showEventSucess()
             }).catch((e) => {
-                hideLoadingBar()
                 showEventError()
+                console.log('Erro ao adicionar o documento: ', e);
             })
 
-
         } catch (e) {
+            hideLoadingBar()
+            showEventError()
             console.log('Erro ao adicionar o documento: ', e);
+        }
+        finally {
+            hideLoadingBar()
         }
         clearForm()
     }
@@ -153,12 +152,17 @@ function showLoadingBar() {
     document.getElementById('loadingBar').classList.remove('hidden');
     document.getElementById('eventHelp').classList.add('hidden');
     document.getElementById('eventSubmiter').classList.add('hidden');
+    document.getElementById('plus-content').classList.add('pointer-events-none');
+    document.getElementById('plus-content').classList.add('opacity-50');
+
 }
 
 function hideLoadingBar() {
     document.getElementById('loadingBar').classList.add('hidden');
     document.getElementById('eventHelp').classList.remove('hidden');
     document.getElementById('eventSubmiter').classList.remove('hidden');
+    document.getElementById('plus-content').classList.remove('pointer-events-none');
+    document.getElementById('plus-content').classList.remove('opacity-50');
 }
 
 function hideEventSucess() {
