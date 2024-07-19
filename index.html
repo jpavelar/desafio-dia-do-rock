@@ -11,27 +11,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="icon" type="image/webp" href="src/images/rock-png.webp">
     <title>Rock Show</title>
 </head>
 
 <body>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore-compat.js"></script>
     <div class="container">
-        <div class="navbar" id="navbar">
-            <div class="navbar-header" onclick="toggleNavbar()">
-                <div class="icons">
-                    <span class="user-div"><img src="src/images/balta-io.jpeg" alt="User Image"
-                            class="user-image" /></span>
-                    <span class="fas fa-search" onclick="showSearch()"></span>
-                    <span class="fas fa-map" onclick="hiddenMenu()"></span>
-                    <span class="fas fa-plus" onclick="showPlus()"></span>
-                    <button onclick="toggleTheme(); toggleThemeMap()">toogle
-                        theme</button>
-                </div>
+        <div class="w-16 bg-black-700 flex flex-col">
+            <div class="flex flex-col c-primary text icons justify-center items-center">
+                <span class="user-div w-16 h-16 flex flex-row items-center justify-center hover-bg-black-100 mt-4">
+                    <img src="src/images/balta-io.jpeg" alt="User Image" class="rounded-full w-8 h-8" /></span>
+                <span class="fas fa-search fa-lg w-16 h-16 flex flex-row items-center justify-center hover-bg-black-100"
+                    onclick="showSearch()"></span>
+                <span class="fas fa-map w-16 h-16 flex flex-row items-center justify-center hover-bg-black-100"
+                    onclick="hiddenMenu()"></span>
+                <span class="fas fa-plus w-16 h-16 flex flex-row items-center justify-center hover-bg-black-100"
+                    onclick="showPlus()"></span>
+                <span id="theme-mode"
+                    class="fas fa-solid fa-moon w-16 h-16 flex flex-row items-center justify-center hover-bg-black-100"
+                    onclick="toggleTheme(); toggleThemeMap()"></span>
             </div>
         </div>
         <div class="main-content" id="mainContent">
-            <div class="search-content bg-black-500">
+            <div class="h-full hidden bg-black-500" id="search-content">
                 <div class="search-header bg-black-500">
                     <h4 class="font-semibold search-title">Busque um evento</h4>
                 </div>
@@ -41,35 +46,103 @@
                         <input id="band" class="input-band c-white" type="text" placeholder="Digite uma banda">
                     </div>
                 </form>
-                <div class="result flex flex-row items-center space-x-8 h-20">
-                    <div class="ml-5">
-                        <img class="min-w-10" src="src/images/Avatar.png" alt="band logo">
-                    </div>
-                    <div class="flex flex-col">
-                        <h1 class="max-w-7 text-xl font-semibold c-white">
-                            Espaço das Américas
-                        </h1>
-                        <h4 class="max-w-7 text-xs c-white">
-                            R. Tagipuru, 795 - Barra Funda São Paulo - SP
-                        </h4>
-                    </div>
-                    <div class="flex items-center justify-center h-16 w-16">
-                        <h2 class="text-center text-xl mr-4 c-white">19:00</h2>
-                    </div>
+                <div class="flex flex-col items-center justify-center space-y-4" id="results">
                 </div>
             </div>
-            <div class="plus-content">
-                <h1>Adicionar Evento</h1>
-                <form>
-                    <input type="text" placeholder="Local do evento">
-                    <button type="submit">Adicionar</button>
+            <div class="h-full hidden bg-black-500" id="plus-content">
+                <div class="bg-black-500">
+
+                </div>
+                <form id="eventForm" class="flex flex-col items-center justify-center">
+                    <div>
+                        <h4 class="font-semibold c-gray mb-2 ml-4 mt-9">Banda</h4>
+                        <div class="input-div bg-black-300">
+                            <span id="lupa" class="fas fa-search c-white"></span>
+                            <input id="eventBand" class="input-band c-white" type="text" placeholder="Digite uma banda">
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold c-gray mb-2 ml-4 mt-9">Data</h4>
+                        <div class="input-div bg-black-300">
+                            <span class="fas fa-solid fa-calendar icons c-white"></span>
+                            <input type="text" name="eventDate" id="eventDate"
+                                class="input-band border-none outline-none c-white deco" placeholder="Digite uma data">
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold c-gray mb-2 ml-4 mt-9">Nome do Local</h4>
+                        <div class="input-div bg-black-300 ">
+                            <span class="fas fa-map c-white"></span>
+                            <input id="eventPlaceName" class="input-band c-white" placeholder="Digite o nome"
+                                type="text">
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold c-gray mb-2 ml-4 mt-9">Endereço</h4>
+                        <div class="input-div bg-black-300">
+                            <span class="fas fa-map c-white"></span>
+                            <input id="eventAdress" class="input-band c-white" type="text"
+                                placeholder="Digite o endereço">
+                        </div>
+                    </div>
+                    <div class="progress-container hidden" id="loadingBar">
+                        <div class="progress-bar"></div>
+                    </div>
+                    <button type="button" id="eventSubmiter"
+                        class="text-2xl c-white mb-3 w-80 h-14 bg-primary rounded-lg mt-4">Salvar
+                        Evento</button>
+                    <div id="eventHelp" class="flex flex-col justify-center items-center">
+                        <h4 class="c-gray">Preciso de ajuda</h4>
+                    </div>
                 </form>
             </div>
+            <div class="h-full bg-black-500 flex flex-col justify-center items-center space-y-2 hidden"
+                id="sucess-content">
+                <div class=" bg-success w-12 h-12 rounded-full items-center justify-center flex flex-col">
+                    <span class="fa-solid fa-check fas text-2xl c-black-100"></span>
+                </div>
+                <div class="items-center  flex flex-col text-xl">
+                    <h2 class="c-white">Obrigado pelo envio!</h2>
+                </div>
+                <div>
+                    <h5 class="c-gray ml-8 mr-8 text-center ">Seu evento será avaliado pela nossa equipe e você
+                        receberá um E-mail em
+                        breve com
+                        o resultado da
+                        nossa aprovação</h5>
+                </div>
+                <div>
+                    <button type="button" id="eventSucessClose"
+                        class="text-2xl c-white mb-3 w-80 h-14 bg-primary rounded-lg mt-4">Fechar</button>
+                </div>
+            </div>
+            <div class="h-full bg-black-500 flex flex-col justify-center items-center hidden space-y-2"
+                id="error-content">
+                <div class=" bg-error w-12 h-12 rounded-full items-center justify-center flex flex-col">
+                    <span class="fa-solid fa-bug fas text-2xl c-black-100"></span>
+                </div>
+                <div class="items-center  flex flex-col text-xl">
+                    <h2 class="c-white">Ops, algo saiu errado</h2>
+                </div>
+                <div>
+                    <h5 class="c-gray ml-8 mr-8 text-center ">Ocorreu uma falha ao tentar submeter seu evento, por favor
+                        verifique sua conexão com a internet e tente novamente.</h5>
+                </div>
+                <div>
+                    <button type="button" id="eventErrorClose"
+                        class="text-2xl c-white mb-3 w-80 h-14 bg-primary rounded-lg mt-4">Fechar</button>
+                </div>
+            </div>
+
         </div>
     </div>
-    <div id="map"></div>
+
+    <div class="map" id="map"></div>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="script.js"></script>
     <script src="scriptMaps.js"></script>
+    <script src="event_database.js"></script>
+    <script src="themeControl.js"></script>
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClamc-U7M-Pa97noCfDQ6JlHyLLzOC4Yg&callback=initializeMap"
         async defer></script>
