@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
         rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="icon" type="image/webp" href="src/images/rock-png.webp">
     <title>Rock Show</title>
 </head>
@@ -30,23 +31,43 @@
             </div>
         </div>
         <div class="main-content" id="mainContent">
-            <div class="search-content hidden">
-                <h4 class="nunito-600 search-title">Busque um evento</h4>
-                <form>
-                    <input id="address" type="text" placeholder="Digite sua pesquisa">
-                    <button type="submit">Pesquisar</button>
+            <div class="search-content bg-black-500">
+                <div class="search-header bg-black-500">
+                    <h4 class="font-semibold search-title">Busque um evento</h4>
+                </div>
+                <form class="search-form">
+                    <div class="input-div bg-black-300">
+                        <span id="lupa" class="fas fa-search c-white"></span>
+                        <input id="band" class="input-band c-white" type="text" placeholder="Digite uma banda">
+                    </div>
                 </form>
+                <div class="result flex flex-row items-center space-x-8 h-20">
+                    <div class="ml-5">
+                        <img class="min-w-10" src="src/images/Avatar.png" alt="band logo">
+                    </div>
+                    <div class="flex flex-col">
+                        <h1 class="max-w-7 text-xl font-semibold c-white">
+                            Espaço das Américas
+                        </h1>
+                        <h4 class="max-w-7 text-xs c-white">
+                            R. Tagipuru, 795 - Barra Funda São Paulo - SP
+                        </h4>
+                    </div>
+                    <div class="flex items-center justify-center h-16 w-16">
+                        <h2 class="text-center text-xl mr-4 c-white">19:00</h2>
+                    </div>
+                </div>
             </div>
-            <div class="plus-content hidden">
+            <div class="plus-content">
                 <h1>Adicionar Evento</h1>
                 <form>
                     <input type="text" placeholder="Local do evento">
                     <button type="submit">Adicionar</button>
                 </form>
             </div>
-            <div id="map"></div>
         </div>
     </div>
+    <div id="map"></div>
     <script src="script.js"></script>
     <script src="scriptMaps.js"></script>
     <script

@@ -22,6 +22,56 @@
     --error: #FF413A;
 }
 
+.bg-primary {
+    background-color: var(--primary);
+}
+
+.bg-black-100 {
+    background-color: var(--black-100);
+}
+
+.bg-black-300 {
+    background-color: var(--black-300);
+}
+
+.bg-black-500 {
+    background-color: var(--black-500);
+}
+
+.bg-black-700 {
+    background-color: var(--black-700);
+}
+
+.bg-white {
+    background-color: var(--white);
+}
+
+.bg-gray {
+    background-color: var(--gray);
+}
+
+.bg-success {
+    background-color: var(--success);
+}
+
+.bg-error {
+    background-color: var(--error);
+}
+
+.c-white {
+    color: var(--white)
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.user-image {
+    width: 32px;
+    height: 32px;
+    border-radius: 300px;
+}
+
 .nunito-600 {
     font-family: "Nunito", sans-serif;
     font-optical-sizing: auto;
@@ -29,7 +79,8 @@
     font-style: normal;
 }
 
-* {
+*,
+html {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -41,15 +92,11 @@
     font-style: normal;
 }
 
-
-
-body {
-    background-color: var(--black-100);
-}
-
 .container {
     display: flex;
     height: 100vh;
+    width: 439px;
+    background-color: var(--primary);
 }
 
 .navbar {
@@ -61,7 +108,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    height: 100%;
+    height: 100vh;
     z-index: 3;
 }
 
@@ -84,11 +131,29 @@ body {
     color: var(--primary);
 }
 
-.main-content {
+#mainContent .search-content,
+#mainContent .plus-content {
+    display: none;
+    height: 100%;
+    width: 375px;
+    /* Largura fixa dos formulários */
+    flex-direction: column;
+    z-index: 2;
+    padding: none;
+}
+
+
+#map {
+    position: static !important;
+}
+
+
+/* MAIN STYLES */
+div.main-content {
     flex: 1;
-    margin-left: 45px;
+    margin-left: 64px;
+    width: 375px;
     /* Espaço da navbar */
-    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -98,61 +163,19 @@ body {
     z-index: 2;
 }
 
-.default-content,
-.search-content,
-.plus-content {
-    background-color: bisque;
-    height: 100%;
-    width: 300px;
-    /* Largura fixa dos formulários */
-    position: relative;
-    z-index: 2;
-}
-
-.hidden {
-    display: none;
-}
-
-#mainContent .search-content,
-#mainContent .plus-content {
-    display: none;
-}
-
-.map-content {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 64px;
-    z-index: 1;
-}
-
-.map-content div {
-    width: 100vw;
-    height: 100vh;
-    border: none;
-}
-
-.user-image {
-    width: 32px;
-    height: 32px;
-    border-radius: 300px;
-}
-
-#map {
-    position: static !important;
-}
-
-
-/* MAIN STYLES */
-.main-content {
-    margin: none;
-    border: none;
+.main-content div {
+    background-color: var(--black-700);
 }
 
 /* -----END----- */
 
 /* SEARCH STYLES */
+
+div.search-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
 
 .search-title {
     margin-left: 32px;
@@ -160,15 +183,56 @@ body {
     color: var(--gray);
 }
 
-.search-content {
-    background-color: var(--black-500);
-    margin: none;
+.search-form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
+
+.input-div {
+    margin-top: 8px;
+    width: 345px;
+    height: 56px;
+    background-color: var(--black-300);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.input-div span {
+    font-size: xx-large;
+    margin-left: 14px;
+    margin-right: 14px;
+}
+
+input.input-band {
+    border: none;
+    /* Remove a borda */
+    outline: none;
+    /* Remove a linha de foco */
+    background-color: transparent;
+    /* Define o fundo como transparente, ou você pode definir uma cor específica */
+    padding: 0;
+    /* Remove o preenchimento */
+    margin: 0;
+    /* Remove a margem */
+    box-shadow: none;
+    /* Remove qualquer sombra */
+    appearance: none;
+    /* Remove estilo padrão do navegador */
+    -webkit-appearance: none;
+    /* Remove estilo padrão do navegador no WebKit (Safari) */
+    -moz-appearance: none;
+    /* Remove estilo padrão do navegador no Mozilla (Firefox) */
+}
+
 
 /* -----END----- */
 
 
-/* SEARCH STYLES */
+/* PLUS STYLES */
 
 .plus-title {
     margin-left: 32px;
@@ -177,7 +241,6 @@ body {
 }
 
 .plus-content {
-    background-color: var(--black-500);
     margin: none;
 }
 
