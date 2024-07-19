@@ -15,6 +15,9 @@
 </head>
 
 <body>
+    <script src="script.js"></script>
+    <script src="scriptMaps.js"></script>
+    <script type="module" src="scriptInsertFirebase.js" defer></script>
     <div class="container">
         <div class="navbar" id="navbar">
             <div class="navbar-header" onclick="toggleNavbar()">
@@ -39,16 +42,18 @@
             </div>
             <div class="plus-content hidden">
                 <h1>Adicionar Evento</h1>
-                <form>
-                    <input type="text" placeholder="Local do evento">
+                <form id="eventForm">
+                    <input type="text" id="eventName" placeholder="Nome do evento" required>
+                    <input type="datetime-local" id="eventDate" placeholder="Data do evento" required>
+                    <input type="text" id="eventAddress" placeholder="Endereço do evento" required>
                     <button type="submit">Adicionar</button>
                 </form>
+                <p id="status"></p>
             </div>
             <div id="map"></div>
         </div>
     </div>
-    <script src="script.js"></script>
-    <script src="scriptMaps.js"></script>
+    
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClamc-U7M-Pa97noCfDQ6JlHyLLzOC4Yg&callback=initializeMap"
         async defer></script>
