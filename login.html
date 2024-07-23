@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600;800&display=swap" rel="stylesheet">
+    <title>Login - Rock Show</title>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-auth-compat.js"></script>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-content">
+            <h1>Bem-vindo ao Rock Show</h1>
+            <p>Para continuar, clique no botão abaixo e faça login com sua conta Google</p>
+            <a id="googleLogin">
+                <div class="g-sign-in-button">
+                    <div class="logo-wrapper">
+                        <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo">
+                    </div>
+                    <span class="text-container">Sign in with Google</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+
+</html>
