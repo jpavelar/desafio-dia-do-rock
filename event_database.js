@@ -91,7 +91,7 @@ const event_database = {};
             const eventDiv = document.createElement('div');
             eventDiv.classList.add('result', 'flex', 'flex-row', 'items-center', 'space-x-8', 'h-20');
             eventDiv.innerHTML = `
-                    <div class="result flex flex-row items-center space-x-8 h-20 mb-2 hover-bg-black-100" onclick="geocodeAndAddMarker('${event.eventAdress}')" >
+                    <div class="result flex flex-row items-center space-x-8 h-20 mb-2 hover-bg-black-100" onclick="geocodeAndAddMarker('${event.address}')" >
                         <div class="ml-5">
                             <img class="min-w-10" src="src/images/Avatar.png" alt="band logo">
                         </div>
@@ -100,7 +100,7 @@ const event_database = {};
                                 ${event.eventPlaceName}
                             </h1>
                             <h4 class="max-w-7 text-xs c-white">
-                                ${event.eventAdress}
+                                ${event.address}
                             </h4>
                         </div>
                         <div class="flex items-center justify-center h-16 w-16">
@@ -124,7 +124,7 @@ const event_database = {};
         const eventBand = document.getElementById('eventBand').value;
         const eventDate = document.getElementById('eventDate').value;
         const eventPlaceName = document.getElementById('eventPlaceName').value;
-        const eventAdress = document.getElementById('eventAdress').value;
+        const address = document.getElementById('address').value;
 
         try {
             showLoadingBar()
@@ -133,7 +133,7 @@ const event_database = {};
                 eventBandLower: eventBand.toLowerCase(),
                 eventDate: eventDate,
                 eventPlaceName: eventPlaceName,
-                eventAdress: eventAdress,
+                address: address,
             }).then((docRef) => {
                 hideLoadingBar()
                 showEventSucess()
