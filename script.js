@@ -45,3 +45,25 @@ function setMinDateTime() {
     const minDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
     document.getElementById('eventDate').setAttribute('min', minDateTime);
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Função para obter o valor de um cookie
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${encodeURIComponent(name)}=`);
+    if (parts.length === 2) {
+        return decodeURIComponent(parts.pop().split(';').shift());
+    }
+}
+    const userDisplayName = getCookie('userDisplayName');
+    const userEmail = getCookie('userEmail');
+    const userPhotoURL = getCookie('userPhotoURL');
+
+    if (!userDisplayName || !userEmail || !userPhotoURL) {
+        window.location.href = "login.html";
+    } else {
+        console.log('Usuário:', userDisplayName);
+        console.log('Email:', userEmail);
+        console.log('URL da imagem:', userPhotoURL);
+    }
+});
