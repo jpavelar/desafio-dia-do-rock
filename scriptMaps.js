@@ -184,4 +184,3 @@ function applyThemeMap(theme) {
 function toggleThemeMap() {
   map.setOptions({ styles: document.documentElement.getAttribute('data-theme') === 'dark' ? darkStyle : lightStyle });
 }
-

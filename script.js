@@ -45,5 +45,3 @@ function setMinDateTime() {
     const minDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
     document.getElementById('eventDate').setAttribute('min', minDateTime);
 }
-
-
