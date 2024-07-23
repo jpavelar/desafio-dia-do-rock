@@ -200,13 +200,8 @@ function showEventError() {
 
 
 document.getElementById('band').addEventListener('keydown', function (event) {
-    if (event.key === 'Enter') {
-        event.preventDefault();
-
         const inputValue = document.getElementById('band').value;
-
         event_database.searchEvents(inputValue);
-    }
 });
 
 document.getElementById('eventSubmiter').addEventListener('click', event_database.postEventData);

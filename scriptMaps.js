@@ -88,7 +88,7 @@ const darkStyle = [
 ];
 
 window.initializeMap = function () {
-  loadMap(-23.4742494, -46.7027369, 10);
+  loadMap(-23.4742494, -46.7027369, 16);
 };
 
 
@@ -122,12 +122,14 @@ const coordinatesDisplay = document.getElementById('coordinates');
 
 let timeout = null;
 
-addressInput.addEventListener('input', function () {
-  clearTimeout(timeout);
-  timeout = setTimeout(() => {
-    geocodeAddress(this.value);
-  }, 1000);
-});
+if(addressInput != null){
+  addressInput.addEventListener('input', function () {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      geocodeAddress(this.value);
+    }, 1000);
+  });  
+}
 
 function geocodeAddress(address) {
   const geocoder = new google.maps.Geocoder();
@@ -174,11 +176,11 @@ function geocodeAndAddMarker(address) {
 window.onload = function () {
   initializeMap();
   loadGoogleMaps();
-
+  document.documentElement.removeAttribute('data-theme')
 }
 
-function applyThemeMap(theme) {
-  map.setOptions({ styles: theme === 'dark' ? darkStyle : lightStyle });
+function toggleTheme() {
+  document.documentElement.getAttribute('data-theme') === 'dark' ? document.documentElement.removeAttribute('data-theme') : document.documentElement.setAttribute('data-theme', 'dark')
 }
 
 function toggleThemeMap() {
