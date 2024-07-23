@@ -65,5 +65,6 @@ function getCookie(name) {
         console.log('Usuário:', userDisplayName);
         console.log('Email:', userEmail);
         console.log('URL da imagem:', userPhotoURL);
+        document.getElementById('avatar').style.backgroundImage = `url('${decodeURIComponent(userPhotoURL)}')`;
     }
 });

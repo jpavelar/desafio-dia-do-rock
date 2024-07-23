@@ -123,7 +123,6 @@ const event_database = {};
 
         const eventBand = document.getElementById('eventBand').value;
         const eventDate = document.getElementById('eventDate').value;
-        const eventPlaceName = document.getElementById('eventPlaceName').value;
         const address = document.getElementById('address').value;
 
         try {
@@ -132,9 +131,9 @@ const event_database = {};
                 eventBand: eventBand,
                 eventBandLower: eventBand.toLowerCase(),
                 eventDate: eventDate,
-                eventPlaceName: eventPlaceName,
                 address: address,
             }).then((docRef) => {
+                sleep(3000)
                 hideLoadingBar()
                 showEventSucess()
             }).catch((e) => {
@@ -170,7 +169,6 @@ function showLoadingBar() {
     document.getElementById('eventHelp').classList.add('hidden');
     document.getElementById('eventSubmiter').classList.add('hidden');
     document.getElementById('plus-content').classList.add('pointer-events-none');
-    document.getElementById('plus-content').classList.add('opacity-50');
 
 }
 

@@ -262,10 +262,10 @@ input.input-band {
 .progress-container {
     width: 80%;
     /* Ajuste conforme necessário para corresponder ao tamanho do botão */
-    height: 4px;
+    height: 6px;
     /* Ajuste a espessura da barra */
     background-color: var(--white);
-    border-radius: 2px;
+    border-radius: 8px;
     /* Borda arredondada */
     position: relative;
     margin: 0 auto;

@@ -23,7 +23,7 @@
         <div class="w-16 bg-black-700 flex flex-col">
             <div class="flex flex-col c-primary text icons justify-center items-center">
                 <span class="user-div w-16 h-16 flex flex-row items-center justify-center hover-bg-black-100 mt-4">
-                    <img src="src/images/balta-io.jpeg" alt="User Image" class="rounded-full w-8 h-8" /></span>
+                    <img id="avatar" style="background-position: center; background-size: cover;" class="rounded-full w-8 h-8" /></span>
                 <span class="fas fa-search fa-lg w-16 h-16 flex flex-row items-center justify-center hover-bg-black-100"
                     onclick="showSearch()"></span>
                 <span class="fas fa-map w-16 h-16 flex flex-row items-center justify-center hover-bg-black-100"
@@ -69,16 +69,9 @@
                                 class="input-band border-none outline-none c-white deco" placeholder="Digite uma data">
                         </div>
                     </div>
+                    
                     <div>
-                        <h4 class="font-semibold c-gray mb-2 ml-4 mt-9">Nome do Local</h4>
-                        <div class="input-div bg-black-300 ">
-                            <span class="fas fa-map c-white"></span>
-                            <input id="eventPlaceName" class="input-band c-white" placeholder="Digite o nome"
-                                type="text">
-                        </div>
-                    </div>
-                    <div>
-                        <h4 class="font-semibold c-gray mb-2 ml-4 mt-9">Endereço</h4>
+                        <h4 class="font-semibold c-gray mb-2 ml-4 mt-9">Local   </h4>
                         <div class="input-div bg-black-300">
                             <span class="fas fa-map c-white"></span>
                             <input id="address" class="input-band c-white" type="text"
