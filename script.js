@@ -1,9 +1,5 @@
 function toggleTheme() {
-    if (document.documentElement.getAttribute('data-theme') === 'dark') {
-        document.documentElement.removeAttribute('data-theme');
-    } else {
-        document.documentElement.setAttribute('data-theme', 'dark');
-    }
+    document.documentElement.getAttribute('data-theme') === 'dark' ? document.documentElement.removeAttribute('data-theme') : document.documentElement.setAttribute('data-theme', 'dark')
 }
 
 function toggleNavbar() {
@@ -12,22 +8,26 @@ function toggleNavbar() {
 }
 
 function showSearch() {
-    document.querySelector('.default-content').style.display = 'none';
     document.querySelector('.plus-content').style.display = 'none';
-    document.querySelector('.map-content').style.display = 'none';
-    document.querySelector('.search-content').style.display = 'block';
+    toggleContent('.search-content')
 }
 
-function showMap() {
-    document.querySelector('.default-content').style.display = 'none';
+function showPlus() {
     document.querySelector('.search-content').style.display = 'none';
-    document.querySelector('.map-content').style.display = 'none';
-    document.querySelector('.plus-content').style.display = 'block';
+    toggleContent('.plus-content')
 }
 
 function hiddenMenu() {
-    document.querySelector('.default-content').style.display = 'none';
     document.querySelector('.search-content').style.display = 'none';
     document.querySelector('.plus-content').style.display = 'none';
-    document.querySelector('.map-content').style.display = 'block';
+}
+
+
+function toggleContent(selector) {
+    var content = document.querySelector(selector);
+    if (content.style.display === 'none' || content.style.display === '') {
+        content.style.display = 'block';
+    } else {
+        content.style.display = 'none';
+    }
 }

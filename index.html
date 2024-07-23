@@ -6,10 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <title>Navbar Expansível</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/webp" href="src/images/rock-png.webp">
+    <title>Rock Show</title>
 </head>
 
 <body>
+    <script src="script.js"></script>
+    <script src="scriptMaps.js"></script>
+    <script type="module" src="scriptInsertFirebase.js" defer></script>
     <div class="container">
         <div class="navbar" id="navbar">
             <div class="navbar-header" onclick="toggleNavbar()">
@@ -18,38 +26,37 @@
                             class="user-image" /></span>
                     <span class="fas fa-search" onclick="showSearch()"></span>
                     <span class="fas fa-map" onclick="hiddenMenu()"></span>
-                    <span class="fas fa-plus" onclick="showMap()"></span>
-                    <button onclick="toggleTheme()">toogle
+                    <span class="fas fa-plus" onclick="showPlus()"></span>
+                    <button onclick="toggleTheme(); toggleThemeMap()">toogle
                         theme</button>
                 </div>
             </div>
         </div>
         <div class="main-content" id="mainContent">
-            <div class="default-content">
-                <h1>Bem-vindo</h1>
-                <p>Conteúdo principal da página.</p>
-            </div>
             <div class="search-content hidden">
-                <h1>Pesquisar</h1>
+                <h4 class="nunito-600 search-title">Busque um evento</h4>
                 <form>
-                    <input type="text" placeholder="Digite sua pesquisa">
+                    <input id="address" type="text" placeholder="Digite sua pesquisa">
                     <button type="submit">Pesquisar</button>
                 </form>
             </div>
             <div class="plus-content hidden">
                 <h1>Adicionar Evento</h1>
-                <form>
-                    <input type="text" placeholder="Local do evento">
+                <form id="eventForm">
+                    <input type="text" id="eventName" placeholder="Nome do evento" required>
+                    <input type="datetime-local" id="eventDate" placeholder="Data do evento" required>
+                    <input type="text" id="eventAddress" placeholder="Endereço do evento" required>
                     <button type="submit">Adicionar</button>
                 </form>
+                <p id="status"></p>
             </div>
-            <div class="map-content">
-                <img src="https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2024/02/google-maps-e1707316052388.png?w=1220&h=674&crop=1&quality=50"
-                    alt="Mapa">
-            </div>
+            <div id="map"></div>
         </div>
     </div>
-    <script src="script.js"></script>
+    
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClamc-U7M-Pa97noCfDQ6JlHyLLzOC4Yg&callback=initializeMap"
+        async defer></script>
 </body>
 
 </html>
