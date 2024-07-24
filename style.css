@@ -297,3 +297,27 @@ input.input-band {
         left: 100%;
     }
 }
+
+.result {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start; 
+    width: 100%; 
+}
+
+.result .flex-col {
+    margin-right: auto;
+}
+
+.resulted {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end; 
+    width: 100%; 
+}
+
+.resulted .flex-col {
+    margin-left: auto;
+}

@@ -138,6 +138,19 @@ function geocodeAddress(address) {
       const lat = results[0].geometry.location.lat();
       const lng = results[0].geometry.location.lng();
       map.setCenter(new google.maps.LatLng(lat, lng, 27));
+
+      // Extrair a rua dos resultados da geocodificação
+      const addressComponents = results[0].formatted_address;
+      var x = localStorage.getItem("street");
+
+      if(x == null)
+        {
+          localStorage.setItem("street", addressComponents);
+        }
+        else
+        {
+          localStorage.removeItem("street");
+        }
     }
   });
 }
