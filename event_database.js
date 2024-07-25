@@ -87,7 +87,7 @@ const event_database = {};
 
         results.forEach(event => {
 
-
+  
             const eventDiv = document.createElement('div');
             eventDiv.classList.add('result', 'flex', 'flex-row', 'items-center', 'space-x-8', 'h-20');
             eventDiv.innerHTML = `
@@ -97,17 +97,18 @@ const event_database = {};
                         </div>
                         <div class="flex flex-col">
                             <h1 class="max-w-7 text-xl font-semibold c-white">
-                                ${event.eventPlaceName}
-                            </h1>
-                            <h4 class="max-w-7 text-xs c-white">
                                 ${event.address}
+                            </h1>
+                            <h4 class="result max-w-7 text-xs c-white">
+                                ${event.street}                            
                             </h4>
                         </div>
-                        <div class="flex items-center justify-center h-16 w-16">
-                            <h2 class="text-center text-xl mr-4 c-white">${formatEventDate(event.eventDate)}</h2>
                         </div>
-                    </div>
+                        <div class="flex items-center justify-center h-16 w-20" style="margin: 0px 15px 0px 0px">
+                            <h2 class="text-center text-xl c-white">${formatEventDate(event.eventDate)}</h2>
+                        </div>
             `;
+            
             resultsContainer.appendChild(eventDiv);
         });
     }
@@ -124,6 +125,7 @@ const event_database = {};
         const eventBand = document.getElementById('eventBand').value;
         const eventDate = document.getElementById('eventDate').value;
         const address = document.getElementById('address').value;
+        const street = localStorage.street;
 
         try {
             showLoadingBar()
@@ -132,6 +134,7 @@ const event_database = {};
                 eventBandLower: eventBand.toLowerCase(),
                 eventDate: eventDate,
                 address: address,
+                street: street
             }).then((docRef) => {
                 sleep(3000)
                 hideLoadingBar()
