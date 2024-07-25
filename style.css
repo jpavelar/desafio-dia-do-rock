@@ -22,101 +22,302 @@
     --error: #FF413A;
 }
 
-* {
+.bg-primary {
+    background-color: var(--primary);
+}
+
+.bg-black-100 {
+    background-color: var(--black-100);
+}
+
+.bg-black-300 {
+    background-color: var(--black-300);
+}
+
+.bg-black-500 {
+    background-color: var(--black-500);
+}
+
+.bg-black-700 {
+    background-color: var(--black-700);
+}
+
+.bg-white {
+    background-color: var(--white);
+}
+
+.bg-gray {
+    background-color: var(--gray);
+}
+
+.bg-success {
+    background-color: var(--success);
+}
+
+.bg-error {
+    background-color: var(--error);
+}
+
+.c-black-100 {
+    color: var(--black-100)
+}
+
+.c-black-300 {
+    color: var(--black-300)
+}
+
+.c-black-500 {
+    color: var(--black-500)
+}
+
+.c-black-700 {
+    color: var(--black-700)
+}
+
+.c-white {
+    color: var(--white)
+}
+
+.c-primary {
+    color: var(--primary)
+}
+
+.c-gray {
+    color: var(--gray)
+}
+
+.c-success {
+    color: var(--success)
+}
+
+.c-error {
+    color: var(--error)
+}
+
+
+.icons {
+    cursor: pointer;
+    line-height: 1;
+    font-size: large;
+}
+
+.hover-bg-black-100:hover {
+    background-color: var(--black-100);
+}
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.nunito-600 {
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+
+*,
+html {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     list-style: none;
     text-decoration: none;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
 }
 
-body {
-    background-color: var(--black-100);
-}
-
-.container {
-    display: flex;
-    height: 100vh;
-}
-
-.navbar {
-    background: var(--black-700);
-    padding: 30px 20px;
-    display: flex;
-    flex-direction: column;
-    width: 64px;
+div.container {
     position: fixed;
-    top: 0;
     left: 0;
-    height: 100%;
-}
-
-.navbar-header {
-    cursor: pointer;
-}
-
-.icons {
-    margin-top: 20px;
+    top: 0;
+    height: 100vh;
+    width: 439px;
+    margin: 0;
+    border: none;
+    padding: 0;
+    z-index: 2;
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: row;
 }
 
-.icons span {
-    cursor: pointer;
-    line-height: 4;
-    font-size: xx-large;
-    /* Tamanho do ícone ajustado */
-    color: var(--primary);
-    ;
-}
 
-.main-content {
-    flex: 1;
-    margin-left: 50px;
-    /* Espaço da navbar */
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    /* Para alinhar os conteúdos à esquerda */
+.map {
+    position: fixed !important;
+    left: 64px;
+    /* Margem esquerda fixa */
+    top: 0;
+    height: 100vh;
+    width: calc(100vw - 64px);
+    /* Largura da tela menos 64 pixels */
+    margin: 0;
+    border: none;
+    padding: 0;
     overflow: hidden;
 }
 
-.default-content,
-.search-content,
-.plus-content {
-    background-color: bisque;
-    height: 100%;
-    width: 300px;
-    /* Largura fixa dos formulários */
-}
 
-.hidden {
-    display: none;
-}
-
-#mainContent .search-content,
-#mainContent .plus-content {
-    display: none;
-}
-
-.map-content {
-    flex: 1;
+/* MAIN STYLES */
+.main-content {
+    position: fixed;
+    left: 64px;
+    /* Margem esquerda fixa */
+    top: 0;
+    height: 100vh;
+    width: 375px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: hidden;
+    z-index: 2;
+    margin: 0;
+    border: none;
+    padding: 0;
+}
+
+/* -----END----- */
+
+/* SEARCH STYLES */
+
+div.search-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.search-title {
+    margin-left: 32px;
+    margin-top: 36px;
+    color: var(--gray);
+}
+
+.search-form {
+    display: flex;
     align-items: center;
+    flex-direction: column;
 }
 
-.map-content img {
-    width: 100%;
+.input-div {
+    margin-top: 8px;
+    width: 345px;
+    height: 56px;
+    background-color: var(--black-300);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.input-div span {
+    font-size: xx-large;
+    margin-left: 14px;
+    margin-right: 14px;
+}
+
+input.input-band {
+    border: none;
+    /* Remove a borda */
+    outline: none;
+    /* Remove a linha de foco */
+    background-color: transparent;
+    /* Define o fundo como transparente, ou você pode definir uma cor específica */
+    padding: 0;
+    /* Remove o preenchimento */
+    margin: 0;
+    /* Remove a margem */
+    box-shadow: none;
+    /* Remove qualquer sombra */
+    appearance: none;
+    /* Remove estilo padrão do navegador */
+    -webkit-appearance: none;
+    /* Remove estilo padrão do navegador no WebKit (Safari) */
+    -moz-appearance: none;
+    /* Remove estilo padrão do navegador no Mozilla (Firefox) */
+}
+
+
+/* -----END----- */
+
+
+/* PLUS STYLES */
+
+.plus-title {
+    margin-left: 32px;
+    margin-top: 36px;
+    color: var(--gray);
+}
+
+.plus-content {
+    margin: none;
+}
+
+/* -----END----- */
+
+
+/* Container da barra de progresso */
+.progress-container {
+    width: 80%;
+    /* Ajuste conforme necessário para corresponder ao tamanho do botão */
+    height: 6px;
+    /* Ajuste a espessura da barra */
+    background-color: var(--white);
+    border-radius: 8px;
+    /* Borda arredondada */
+    position: relative;
+    margin: 0 auto;
+    /* Centraliza a barra se necessário */
+    margin-top: 20px;
+    /* Espaço acima da barra */
+    overflow: hidden;
+    /* Garante que a barra de progresso não ultrapasse os limites */
+}
+
+/* Barra de progresso */
+.progress-bar {
     height: 100%;
-    object-fit: cover;
+    background-color: var(--primary);
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: -100%;
+    animation: loading 1.5s infinite linear;
 }
 
-.user-image {
-    width: 32px;
-    height: 32px;
-    border-radius: 300px;
+/* Animação de carregamento */
+@keyframes loading {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+.result {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start; 
+    width: 100%; 
+}
+
+.result .flex-col {
+    margin-right: auto;
+}
+
+.resulted {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end; 
+    width: 100%; 
+}
+
+.resulted .flex-col {
+    margin-left: auto;
 }
